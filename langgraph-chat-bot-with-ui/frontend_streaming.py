@@ -24,7 +24,7 @@ if chat_input:
 
     with st.chat_message("assistant"):
         ai_message = st.write_stream(
-            message_chunk.content
+            message_chunk.content  # pyright: ignore[reportAttributeAccessIssue]
             for message_chunk, metadata in workflow.stream(
                 {"messages": [HumanMessage(content=chat_input)]},
                 config=config,
