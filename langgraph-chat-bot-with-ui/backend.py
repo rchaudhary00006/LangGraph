@@ -21,11 +21,10 @@ graph = StateGraph(ChatState)
 
 
 def chat_node(state: ChatState):
-    prompt = (
-        f"{SystemMessage(content='You are an helpful assistant')} + {state['messages']}"
-    )
-
-    response = llm.invoke(prompt)
+    messages = [SystemMessage(content="You are a helpful assistant")] + state[
+        "messages"
+    ]
+    response = llm.invoke(messages)
 
     return {"messages": response}
 
